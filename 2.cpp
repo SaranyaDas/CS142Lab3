@@ -29,152 +29,97 @@ class CLList {
 	  tail -> next = head;
 	  }
   void countItems() {
-	Node * shit=head->next;
-	int i=0;
-	while (shit !=head)
-	{
-	shit=shit->next;
-	i++;
+	Node * i = head -> next;
+	int j = 0;
+	while (i != head) {
+		i = i -> next;
+	        j++;
+	        }
+	tail -> next = head;
+	cout << j + 1 << endl;
 	}
-	tail->next=head;
-	cout<< i+1<<endl;
+  void insertAt(int pos,int data) {
+	  Node * i = head -> next;
+	  int j = 0;
+	  while (i != head) {
+		  i = i -> next;
+	          j++;
+	          }
+	  if (pos < j + 1) {
+		  Node * current = head;
+		  int k = 1;
+		  while (k < pos - 1) {
+			  current = current -> next;
+			  k++;
+		  }
+		  Node * temp = new Node;
+		  temp -> value = data;
+		  temp -> next = current -> next;
+		  current -> next = temp;
+	  }
+	  else {
+		  cout << "Check the range of your list." << endl;
+	  }
+	  tail -> next = head;	
+  }
+  void delele() {
+	Node * temp = tail;
+	Node * current = head;
+	tail -> next = head;
+	while (current -> next != head) {
+		current = current -> next;
 	}
-	
-	
-	void insertAt(int position,int value)
-	{
-	
-	//count the number of things in the list
-	Node* shit=head->next;
-	int i=0;
-	while (shit !=head)
-	{
-	shit=shit->next;
-	i++;
-	}
-	if (position<i+1)
-	{
-	//create a pointer that will point to the first node
-	Node* current=head;
-	//move it to the required nodal position
-	int j=1;
-	while (j<position-1)
-	{
-	current=current->next;
-	j++;
-	}
-	//now the pointer "current"points to the required nodal position
-	//create a node at that position and enter data
-	Node* temp=new Node;
-	temp->data=value;
-	temp->next=current->next;
-	current->next=temp;
-	}
-	else
-	{
-	cout<<"Check the range of your list before you type."<<endl;
-	}
-	tail->next=head;	
-	}
-
-	
-	void del()
-	{
-	
-	//point to the last node in the list and save its address
-	Node* temp=tail;
-	//point to the first node in the list
-	Node* current=head;
-	//move to the last but one node in the list
-	tail->next=head;
-	while (current->next != head)
-	{
-	current = current->next;
-	}
-	//set the pointer to the last but one node to head
-	current->next=head;
-	//set the current( last but one node) to be the last node
-	current=tail;
-	//get rid of the ex-last node
-	
+	current -> next = head;
+	current = tail;
 	delete temp;
+  }
+  void deleteAt(int pos) {
+	Node * i = head -> next;
+	int j = 0;
+	while (i != head) {
+		i = i -> next;
+		j++;
 	}
-
-	
-	void delAt(int position)
-	{
-	
-	//count the number of things in the list
-	Node* shit=head->next;
-	int i=0;
-	while (shit !=head)
-	{
-	shit=shit->next;
-	i++;
+	if (pos < j + 1) {	
+		Node * current = head;
+		int k = 1;
+		while (k < pos - 1) {
+		current = current -> next;
+		k++;
+		}
+		Node * temp = current -> next;
+		current -> next = temp -> next;
+		tail -> next = head;
+		delete temp;
 	}
-	if (position<i+1)
-	{	
-	//point to the first node
-	Node* current=head;
-	//move to the required position
-	int j=1;
-	while (j<position-1)
-	{
-	current=current->next;
-	j++;
+	else {
+		cout << "Check the total number of items in your list." << endl;
 	}
-	//we have reached the predecessor of the node we want to delete
-	//now, we store the address of the node we want to delete
-	Node* temp=current->next;
-	//temp->next will give us the address of the successor of the node we want out
-	//equate the address of the successor to that of the node we want deleted
-	current->next=temp->next;
-	//delete the node you want to delete
-	tail->next=head;
-	delete temp;
+  }
+  void display() {
+	Node * temp = head -> next;
+	cout<< head -> value << " -> ";
+	while(temp != head) {
+		cout << temp -> value << " -> ";
+		temp = temp -> next;
 	}
-	else
-	{
-	cout<<"Check the total number of things in your list."<<endl;
-	}	
-	}
-	
-
-	void display()
-	{
-	
-	//create a pointer to the first node
-	Node* tem=head->next;
-	cout<<head->data<<" -> ";
-	while(tem!=head)
-	{
-	cout<< tem->data <<" -> ";
-	tem=tem->next;
-	}
-	cout<<endl;
-	tail->next=head;
-	}
-	
-	
-
-};
-
-//driver function
-int main()
-{
-	CList l1;
-	l1.insert(8);
-	l1.insert(3);
-	l1.insert(34);
-	l1.insert(56);
-	l1.count();
+	cout << endl;
+	tail -> next = head;
+  }
+}
+int main() {
+	CLList l1;
+	l1.insert(4);
+	l1.insert(6);
+	l1.insert(48);
+	l1.insert(69);
+	l1.countItems();
 	l1.display();
-	l1.insertAt(3,67);
+	l1.insertAt(6,54);
 	l1.display();
-	l1.del();
+	l1.delete();
 	l1.display();
-	l1.delAt(3);
+	l1.deleteAt(6);
 	l1.display();
-	
 	return 0;
 }
