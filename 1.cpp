@@ -111,20 +111,20 @@ public:
 }
 int main() {
 	DDList l;
-	l.insert(3);
+	l.insert(5);
 	l.insert(4);
-	l.insert(45);
+	l.insert(46);
 	l.countItems();
 	l.display();
-	l.insertAt(3,455);
+	l.insertAt(7,420);
 	l.countItems();
 	l.display();
 	l.delete();
 	l.countItems();
 	l.display();
-	l.insert(245);
-	l.insert(3535);
-	l.insertAt(3,635);
+	l.insert(289);
+	l.insert(4800);
+	l.insertAt(5,666);
 	l.countItems();
 	l.display();
 	l.delete();
